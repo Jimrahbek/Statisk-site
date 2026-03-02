@@ -1,4 +1,7 @@
-const id = 1165;
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+console.log("id:", id);
 const productURL = "https://kea-alt-del.dk/t7/api/products/" + id;
 
 const imageContainer = document.querySelector(".product-image");

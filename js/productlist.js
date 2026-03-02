@@ -1,4 +1,21 @@
-const listURL = "https://kea-alt-del.dk/t7/api/products";
+console.log("Product list JS is running");
+
+const params = new URLSearchParams(window.location.search);
+
+const category = params.get("category");
+
+console.log(category);
+
+// const fetchUrl = `https://kea-alt-del.dk/t7/api/products?category=${category}`;
+
+// fetch(fetchUrl)
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log("Produkter:", data);
+//   });
+
+const listURL = category ? `https://kea-alt-del.dk/t7/api/products?category=${encodeURIComponent(category)}` : "https://kea-alt-del.dk/t7/api/products";
+console.log(listURL);
 const listContainer = document.querySelector(".product-gallery");
 
 function getProducts() {
@@ -14,13 +31,14 @@ function showProducts(products) {
     listContainer.innerHTML += `
   
             <article class="product">
-                <h3>${product.productdisplayname}</h3>
                 <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="" />
-                <p class="price">${product.price} kr</p>
-                <p>Brandname: ${product.brandname}</p>
+                 <p class="brand">Brandname: ${product.brandname}</p>
+                <h3>${product.productdisplayname}</h3>
+                <p class="price">Pris: ${product.price} kr</p>
                 <p>Lager: ${product.soldout}</p>
                 <p>Rabat: ${product.discount}%</p>
-                <a href="product.html" class="btn">Køb nu</a>
+                <p>category: ${product.category}</p>
+                <a href="product.html?id=${product.id}" class="btn">Køb nu</a>
             </article>
  
     `;
