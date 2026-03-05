@@ -36,7 +36,7 @@ function showProducts(products) {
                 <h3>${product.productdisplayname}</h3>
                 <p class="price">Pris: ${product.price} kr</p>
                 <p>Lager: ${product.soldout}</p>
-                <p>Rabat: ${product.discount}%</p>
+                <p>Rabat: ${product.discount ? product.discount + "%" : "Ingen rabat"}</p>
                 <p>category: ${product.category}</p>
                 <a href="product.html?id=${product.id}" class="btn">Køb nu</a>
             </article>
